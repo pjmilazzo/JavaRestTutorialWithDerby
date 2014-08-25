@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!-- Application specific context.xml vs. global in tomcat -->
+	<Resource name="jdbc/testdb" 
+		auth="Container"
+		type="javax.sql.DataSource"         
+		driverClassName="org.apache.derby.jdbc.ClientDriver"
+		url="jdbc:derby://localhost:1527/db;create=true"
+		maxActive="10" 
+		maxIdle="4"/>
+		
+		<!-- User name and password left out from above since not needed
+		username="user12" 
+		password="34klq*"
+		 -->
+</Context>
