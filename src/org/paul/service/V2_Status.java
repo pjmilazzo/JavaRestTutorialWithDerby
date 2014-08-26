@@ -24,7 +24,7 @@ import org.paul.dao.DerbyDAO;
  */
 
 @Path("/v2/status")
-public class Status {
+public class V2_Status {
 	
 	private static final String api_version = "2.0";
 	

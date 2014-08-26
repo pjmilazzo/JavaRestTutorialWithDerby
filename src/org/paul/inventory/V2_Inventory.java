@@ -4,15 +4,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.codehaus.jettison.json.JSONArray;
 import org.paul.dao.DerbyDAO;
 import org.paul.util.ToJson;
 
 @Path("v2/inventory")
-public class Inventory {
+public class V2_Inventory {
 	
 	static final private String query = "select * from PC_PARTS";
 
