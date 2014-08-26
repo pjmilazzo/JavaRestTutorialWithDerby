@@ -192,10 +192,8 @@ public class SchemaDAO extends DerbyDAO {
 	 * 
 	 * Never add parameter straight into the prepareStatement
 	 * 
-	 * @param brand
-	 *            - product brand
-	 * @param item_number
-	 *            - product item number
+	 * @param brand - product brand
+	 * @param item_number - product item number
 	 * @return - json array of the results from the database
 	 * @throws Exception
 	 */
@@ -206,8 +204,7 @@ public class SchemaDAO extends DerbyDAO {
 
 		try {
 			conn = derbyPcPartsConnection();
-			query = conn
-					.prepareStatement("select PC_PARTS_PK, PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC "
+			query = conn.prepareStatement("select PC_PARTS_PK, PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC "
 							+ "from PC_PARTS " + "where UPPER(PC_PARTS_MAKER) = ? " + "and PC_PARTS_CODE = ?");
 			/*
 			 * protect against sql injection when you have more than one ?, it
@@ -246,8 +243,7 @@ public class SchemaDAO extends DerbyDAO {
 		
 		try {
 			conn = derbyPcPartsConnection();
-			query = conn
-					.prepareStatement("select PC_PARTS_PK, PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC "
+			query = conn.prepareStatement("select PC_PARTS_PK, PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC "
 							+ "from PC_PARTS");
 			ResultSet rs = query.executeQuery();
 			json = ToJson.toJSONArray(rs);
