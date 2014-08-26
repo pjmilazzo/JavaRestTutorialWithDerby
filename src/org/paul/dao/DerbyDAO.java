@@ -33,7 +33,7 @@ public class DerbyDAO {
 		Connection conn = null;
 		
 		try {
-			conn = DerbyDAO.derbyConn().getConnection();
+			conn = derbyConn().getConnection();
 			return conn;
 		} catch (Exception e) {
 			e.printStackTrace();
