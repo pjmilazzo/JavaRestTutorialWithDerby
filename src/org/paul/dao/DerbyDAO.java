@@ -4,7 +4,6 @@ import java.sql.Connection;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.servlet.jsp.tagext.TryCatchFinally;
 import javax.sql.DataSource;
 
 public class DerbyDAO {
@@ -14,7 +13,7 @@ public class DerbyDAO {
 	//TODO change derbyConn() to private and fix broken methods after change
 	public static DataSource derbyConn() throws Exception {
 		if (derbyDataSource != null) {
-			
+			return derbyDataSource;
 		}
 		
 		try {
@@ -34,7 +33,7 @@ public class DerbyDAO {
 		Connection conn = null;
 		
 		try {
-			conn = derbyDataSource.getConnection();
+			conn = DerbyDAO.derbyConn().getConnection();
 			return conn;
 		} catch (Exception e) {
 			e.printStackTrace();

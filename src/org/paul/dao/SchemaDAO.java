@@ -159,8 +159,7 @@ public class SchemaDAO extends DerbyDAO {
 
 		try {
 			conn = derbyPcPartsConnection();
-			query = conn
-					.prepareStatement("select PC_PARTS_PK, PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC "
+			query = conn.prepareStatement("select PC_PARTS_PK, PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC "
 							+ "from PC_PARTS " + "where UPPER(PC_PARTS_MAKER) = ? ");
 			
 			query.setString(1, brand.toUpperCase()); // protect against sql injection
