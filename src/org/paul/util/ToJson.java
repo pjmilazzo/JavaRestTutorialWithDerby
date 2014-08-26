@@ -1,12 +1,10 @@
 package org.paul.util;
 
 import java.sql.ResultSet;
-import java.util.List;
 
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONObject;
 import org.owasp.esapi.ESAPI;
-import org.paul.inventory.Part;
 
 /**
  * This utility will convert a database data into JSON format. Note: this java
@@ -27,16 +25,21 @@ public class ToJson {
 	public static JSONArray toJSONArray(ResultSet rs) throws Exception {
 		JSONArray json = new JSONArray(); // JSON array that will be returned
 		String temp = null;
+		
 		try {
 			// we will need the column names, this will save the table meta-data
 			// like column nmae.
 			java.sql.ResultSetMetaData rsmd = rs.getMetaData();
+			
 			// loop through the ResultSet
 			while (rs.next()) {
+				
 				// figure out how many columns there are
 				int numColumns = rsmd.getColumnCount();
+				
 				// each row in the ResultSet will be converted to a JSON Object
 				JSONObject obj = new JSONObject();
+				
 				// loop through all the columns and place them into the JSON
 				// Object
 				for (int i = 1; i < numColumns + 1; i++) {
@@ -108,30 +111,4 @@ public class ToJson {
 		return json; // return JSON array
 	}	
 	
-	public static JSONArray toJSONArray(List<Part> parts) throws Exception {
-
-		JSONArray json = new JSONArray(); // JSON array that will be returned
-
-		try {
-
-			// loop through the parts object
-
-			for (Part part : parts) {
-
-				JSONObject obj = new JSONObject();
-				obj.put("primaryKey", part.getPrimaryKey());
-				obj.put("title", part.getTitle());
-				obj.put("code", part.getCode());
-				obj.put("maker", part.getMaker());
-				obj.put("avail", part.getAvail());
-				obj.put("desc", part.getDesc());
-
-				json.put(obj);
-			}// end while
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return json; // return JSON array
-	}
 }

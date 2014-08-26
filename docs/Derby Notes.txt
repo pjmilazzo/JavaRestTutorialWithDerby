@@ -1,0 +1,46 @@
+1.) Setup:
+
+Add "DERBY_HOME" to the environment variables
+Add %DERBY_HOME%\bin to path
+
+3.) Start the server:
+
+startNetworkserver.bat
+
+4.) Start the client:
+
+ij.bat
+
+5.) In ij, create a new database in ij (always end each line with a semi colon)
+
+connect 'jdbc:derby://localhost:1527/db;create=true';
+
+6.) Create new table for circle:
+
+CREATE TABLE circle (id integer, name varchar(50)) ;
+
+7.) Test table creation:
+
+select * from circle;
+
+8.) Add a row with an insert command
+
+insert into circle values (1, 'First Circle');
+insert into circle values (2, 'Second Circle');
+
+9.) Test row insert:
+
+select * from circle;
+
+10.) quick client:
+
+exit;
+
+you can run an .sql script like circle or cars like this:
+
+run 'cars.sql';
+
+you can test by:
+
+SELECT * FROM CARS;
+
