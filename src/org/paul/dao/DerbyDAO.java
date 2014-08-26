@@ -10,8 +10,7 @@ public class DerbyDAO {
 	private static DataSource derbyDataSource = null;
 	private static Context context = null;
 	
-	//TODO change derbyConn() to private and fix broken methods after change
-	public static DataSource derbyConn() throws Exception {
+	private static DataSource derbyConn() throws Exception {
 		if (derbyDataSource != null) {
 			return derbyDataSource;
 		}
@@ -29,7 +28,7 @@ public class DerbyDAO {
 		return derbyDataSource;
 	}
 	
-	protected static Connection derbyPcPartsConnection() {
+	public static Connection derbyPcPartsConnection() {
 		Connection conn = null;
 		
 		try {

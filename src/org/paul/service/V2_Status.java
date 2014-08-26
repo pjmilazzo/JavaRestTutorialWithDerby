@@ -53,7 +53,7 @@ public class V2_Status {
 		String myString = null;
 
 		try {
-			conn = DerbyDAO.derbyConn().getConnection();
+			conn = DerbyDAO.derbyPcPartsConnection();
 			ps = conn.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			

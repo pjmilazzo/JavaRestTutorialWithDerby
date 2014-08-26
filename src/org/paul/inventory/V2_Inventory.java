@@ -29,7 +29,7 @@ public class V2_Inventory {
 		Response rb = null;
 
 		try {
-			conn = DerbyDAO.derbyConn().getConnection();
+			conn = DerbyDAO.derbyPcPartsConnection();
 			ps = conn.prepareStatement(query);
 			
 			ResultSet rs = ps.executeQuery();
