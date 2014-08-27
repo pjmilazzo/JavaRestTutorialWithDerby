@@ -95,17 +95,16 @@ public class SchemaDAO extends DerbyDAO {
 	 * Note: there is no validation being done... if this was a real project you
 	 * must do validation here!
 	 * 
-	 * @param PC_PARTS_TITLE
-	 * @param PC_PARTS_CODE
-	 * @param PC_PARTS_MAKER
-	 * @param PC_PARTS_AVAIL
-	 *            - integer column
-	 * @param PC_PARTS_DESC
+	 * @param pcPartsTitle
+	 * @param pcPartsCode  - integer column
+	 * @param pcPartsMaker
+	 * @param pcPartsAvail - integer column
+	 * @param pcPartsDesc
 	 * @return integer 200 for success, 500 for error
 	 * @throws Exception
 	 */
-	public int insertIntoPC_PARTS(String PC_PARTS_TITLE, String PC_PARTS_CODE, String PC_PARTS_MAKER, String PC_PARTS_AVAIL,
-			String PC_PARTS_DESC) throws Exception {
+	public int insertIntoPC_PARTS(String pcPartsTitle, String pcPartsCode, String pcPartsMaker, String pcPartsAvail,
+			String pcPartsDesc) throws Exception {
 		PreparedStatement query = null;
 		Connection conn = null;
 		
@@ -121,14 +120,19 @@ public class SchemaDAO extends DerbyDAO {
 			conn = derbyPcPartsConnection();
 			query = conn.prepareStatement("insert into PC_PARTS "
 					+ "(PC_PARTS_TITLE, PC_PARTS_CODE, PC_PARTS_MAKER, PC_PARTS_AVAIL, PC_PARTS_DESC) " + "VALUES ( ?, ?, ?, ?, ? ) ");
-			query.setString(1, PC_PARTS_TITLE);
-			query.setString(2, PC_PARTS_CODE);
-			query.setString(3, PC_PARTS_MAKER);
-			// PC_PARTS_AVAIL is a number column, so we need to convert the
-			// String into a integer
-			int avilInt = Integer.parseInt(PC_PARTS_AVAIL);
-			query.setInt(4, avilInt);
-			query.setString(5, PC_PARTS_DESC);
+			query.setString(1, pcPartsTitle);
+			
+			// PC_PARTS_CODE is a number column, so we need to convert the String into a integer
+			int codeInt = Integer.parseInt(pcPartsCode);
+			query.setInt(2, codeInt);
+			
+			query.setString(3, pcPartsMaker);
+			
+			// PC_PARTS_AVAIL is a number column, so we need to convert the String into a integer
+			int availInt = Integer.parseInt(pcPartsAvail);
+			query.setInt(4, availInt);
+			
+			query.setString(5, pcPartsDesc);
 			query.executeUpdate(); // note the new command for insert statement
 			
 		} catch (Exception e) {

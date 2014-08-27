@@ -13,7 +13,7 @@ Please go to <a href="http://youtube.com/308tube">http://youtube.com/308tube</a>
 for original source code.
 </p>
 
-<H1>Pre-Reqs</H1>
+<H2>Pre-Reqs</H2>
 <p>Make sure Derby and Tomcat are installed and setup.  Test with DerbyWithTomcat project.  If additional details are needed, <br/>
 there is a ".mht" file in the doc folder of the DerbyWithTomcat project that will get you going quickly.  If you want to review without Derby, <br/>
 there is another project called JavaRestTutorial which has no db needed at all.<br /><br />
@@ -22,11 +22,11 @@ This tutorial assumes that the primary key auto increments in case ported to ano
 <p>
 <HR>
 
-<H1>Part #1</H1>
+<H2>Part #1</H2>
 <p>Intro to the series<p>
 <HR>
 
-<H1>Part #2</H1>
+<H2>Part #2</H2>
 <p>Start creating our Java Rest Service using the Jersey Framework</p>
 <p> For more information on Jersey, please go to http://jersey.java.net/<br/>
 <p>Two API resources were create in part 2:<p>
@@ -34,7 +34,7 @@ This tutorial assumes that the primary key auto increments in case ported to ano
 <a href="http://localhost:8080/JavaRestTutorialWithDerby/api/v2/status/version">http://localhost:8080/JavaRestTutorialWithDerby/api/v2/status/version</a><br>
 <HR>
 
-<h1>Part #3</h1>
+<h2>Part #3</h2>
 <p>
 One API resource was created in part 3: <br />
 This uses derby instead of oracle<br />
@@ -42,14 +42,14 @@ This uses derby instead of oracle<br />
 </p>
 <hr>
 
-<h1>Part #4</h1>
+<h2>Part #4</h2>
 <p>
 One API resources was created in part 4: <br />
 <a href="http://localhost:8080/JavaRestTutorialWithDerby/api/v2/inventory">http://localhost:8080/JavaRestTutorialWithDerby/api/v2/inventory</a>
 </p>
 <hr>
 
-<h1>Part #5</h1>
+<h2>Part #5</h2>
 <p>
 Inventory API was updated to version 3 to allow passing in brand as a query param: <br />
 <a href="http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory?brand=HP">http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory?brand=HP</a><br />
@@ -68,6 +68,16 @@ Inventory API was updated to version 3 to allow passing in brand as a query para
 <br />Inventory API was updated to allow passing in brand and item number as a path params: <br />
 <a href="http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory/HP/123456">http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory/HP/123456</a><br />
 <a href="http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory/HP/123459">http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory/HP/123459</a><br />
+</p>
+<hr>
+
+<h2>Part #6</h2>
+<p>Introducing the POST method, we will be using POST to insert into the PC PARTS database table. There is going to be two examples. One using data binding (object mapping)
+The other way (2) is the use JSONArrays and JSONObjects. Both ways are valid, choose which one you want to go with.
+</p>
+<p>
+In order to demo POST, I have created a simple web form with a POST ajax request. <br />
+<a href="http://localhost:8080/JavaRestTutorialWithDerby/post.html">POST web form</a>
 </p>
 <hr>
 

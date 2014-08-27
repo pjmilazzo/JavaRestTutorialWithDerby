@@ -1,6 +1,8 @@
 package org.paul.inventory;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -8,7 +10,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONObject;
 import org.paul.dao.SchemaDAO;
 
 @Path("v3/inventory")
@@ -108,10 +112,13 @@ public class V3_Inventory {
 	 * uses PathParam to bring in both parameters.
 	 * 
 	 * Example:
-	 * http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory/HP/123459
+	 * http://localhost:8080/JavaRestTutorialWithDerby/api/v3/inventory/
+	 * HP/123459
 	 * 
-	 * @param brand - product brand name
-	 * @param item_number - product item number
+	 * @param brand
+	 *            - product brand name
+	 * @param item_number
+	 *            - product item number
 	 * @return - json array results list from the database
 	 * @throws Exception
 	 */
@@ -131,5 +138,74 @@ public class V3_Inventory {
 		}
 		return Response.ok(returnString).build();
 	}
+
+	/**
+	 * This method will allow you to insert data the PC_PARTS table. This is an
+	 * example of using the Jackson Processor
+	 * 
+	 * Note: If you look, this method addPcParts using the same URL as a GET
+	 * method returnBrandParts. We can do this because we are using different
+	 * HTTP methods for the same URL string.
+	 * 
+	 * @param payload - must be in JSON format
+	 * @return String
+	 * @throws Exception
+	 */
+	@POST
+	// Example of two content types (notice the curly braces):
+	@Consumes({ MediaType.APPLICATION_FORM_URLENCODED, MediaType.APPLICATION_JSON })
+	
+	// Example of one content type
+	// @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response addPcParts(String payload) throws Exception {
+		String returnString = null;
+		JSONArray jsonArray = new JSONArray(); //not needed
+		SchemaDAO dao = new SchemaDAO();
+		try {
+			System.out.println("incomingData (payload): " + payload);
+			/*
+			 * ObjectMapper is from Jackson Processor framework
+			 * http://jackson.codehaus.org/
+			 * 
+			 * Using the readValue method, you can parse the json from the http
+			 * request and data bind it to a Java Class.
+			 */
+			ObjectMapper mapper = new ObjectMapper();
+			ItemEntry itemEntry = mapper.readValue(payload, ItemEntry.class);
+			int http_code = dao.insertIntoPC_PARTS(itemEntry.PC_PARTS_TITLE, itemEntry.PC_PARTS_CODE, itemEntry.PC_PARTS_MAKER,
+					itemEntry.PC_PARTS_AVAIL, itemEntry.PC_PARTS_DESC);
+
+			if (http_code == 200) {
+				JSONObject jsonObject = new JSONObject();
+				jsonObject.put("HTTP_CODE", "200");
+				jsonObject.put("MSG", "Item has been entered successfully, Version 3");
+				returnString = jsonArray.put(jsonObject).toString();
+			} else {
+				return Response.status(500).entity("Unable to process Item").build();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.status(500).entity("Server was not able to process your request").build();
+		}
+		return Response.ok(returnString).build();
+	}
+
+}
+
+/*
+ * This is a class used by the addPcParts method. Used by the Jackson Processor
+ * 
+ * Note: for re-usability you should place this in its own package.
+ */
+
+// TODO:
+// Domain Object:
+class ItemEntry {
+	public String PC_PARTS_TITLE;
+	public String PC_PARTS_CODE;
+	public String PC_PARTS_MAKER;
+	public String PC_PARTS_AVAIL;
+	public String PC_PARTS_DESC;
 
 }
