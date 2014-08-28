@@ -103,8 +103,7 @@ public class SchemaDAO extends DerbyDAO {
 	 * @return integer 200 for success, 500 for error
 	 * @throws Exception
 	 */
-	public int insertIntoPC_PARTS(String pcPartsTitle, String pcPartsCode, String pcPartsMaker, String pcPartsAvail,
-			String pcPartsDesc) throws Exception {
+	public int insertIntoPC_PARTS(String pcPartsTitle, String pcPartsCode, String pcPartsMaker, String pcPartsAvail, String pcPartsDesc) throws Exception {
 		PreparedStatement query = null;
 		Connection conn = null;
 		

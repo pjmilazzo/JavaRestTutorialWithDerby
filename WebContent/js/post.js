@@ -1,5 +1,6 @@
 /**
- * js file for post.html Please use modern web browser as this file will not
+ * js file for post.html 
+ * Please use modern web browser as this file will not
  * attempt to be compatible with older browsers. Use Chrome and open
  * javascript console or Firefox with developer console.
  * 
@@ -9,7 +10,8 @@ $(document).ready(function() {
 //	console.log("ready");
 	var $post_example = $('#post_example');
 	/**
-	 * This is for the Submit button It will trigger a ajax POST call to:
+	 * This is for the Submit button 
+	 * It will trigger a ajax POST call to:
 	 * api/v3/inventory This will submit a item entry to our inventory database
 	 */
 	$('#submit_it').click(function(e) {
@@ -40,7 +42,8 @@ $(document).ready(function() {
 		$.ajax(ajaxObj);
 	});
 	/**
-	 * This is for the 2nd Submit button "Submit v4" It will do the same thing as
+	 * This is for the 2nd Submit button "Submit v4" 
+	 * It will do the same thing as
 	 * Submit above but the api will process it in a different way.
 	 */
 	$('#submit_it2').click(function(e) {
